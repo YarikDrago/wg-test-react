@@ -1,0 +1,31 @@
+.tankCard {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 260px;
+  font-family: Arial, sans-serif;
+  color: #b9b9b9;
+  transition: color 0.3s ease;
+
+  p {
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+  }
+
+  &:hover {
+    color: #f8aa31;
+
+    img {
+      filter: drop-shadow(0 0 10px rgba(248, 170, 49, 0.6));
+    }
+  }
+}
