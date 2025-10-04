@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 
+import Modal from '@/pages/TanksExperience/components/Modal/Modal';
+import ModalContent from '@/pages/TanksExperience/components/Modal/ModalContent/ModalContent';
 import TankCard from '@/pages/TanksExperience/components/TankCard/TankCard';
 import { downloadTanksData } from '@/pages/TanksExperience/utils/downloadTanksData';
 
@@ -8,19 +10,37 @@ import tankStore from './store';
 import * as styles from './TanksExperience.module.scss';
 
 const TanksExperience = () => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     downloadTanksData();
   }, []);
+
+  useEffect(() => {
+    if (!modalRef.current) return;
+    const height = modalRef.current.clientHeight;
+    const width = modalRef.current.clientWidth;
+    tankStore.modal.height = height;
+    tankStore.modal.width = width;
+  }, [modalRef.current]);
 
   return (
     <div className={styles.root}>
       <div className={styles.mainContent}>
         <div className={styles.cardsContainer}>
           {tankStore.tanks.map((tank, index) => {
-            return <TankCard key={index} name={tank.name} imgPath={tank.img} />;
+            return <TankCard key={index} id={index} name={tank.name} imgPath={tank.img} />;
           })}
         </div>
       </div>
+      <Modal
+        ref={modalRef}
+        top={tankStore.modal.top ? tankStore.modal.top : 0}
+        left={tankStore.modal.left ? tankStore.modal.left : 0}
+        isFullscreen={false}
+      >
+        <ModalContent />
+      </Modal>
     </div>
   );
 };
