@@ -10,5 +10,11 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
     port: options.port,
     open: true,
     hot: true,
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
   };
 }
