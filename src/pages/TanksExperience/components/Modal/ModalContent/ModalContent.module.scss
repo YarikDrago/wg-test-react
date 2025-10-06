@@ -1,5 +1,20 @@
 .modalContent {
-  width: 672px;
-  height: 410px;
-  background-color: cadetblue;
+  position: relative;
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: auto auto;
+  gap: 39px;
+  padding: 32px;
+  border: 1px solid #747474;
+  background-color: rgba(42, 42, 42, 0.9);
+  backdrop-filter: blur(6px);
+  color: #aeac7e;
+  font-family: Arial, sans-serif;
+
+  h4 {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+  }
 }

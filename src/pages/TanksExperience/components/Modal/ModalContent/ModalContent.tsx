@@ -1,6 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
+import LeftSide from '@/pages/TanksExperience/components/Modal/ModalContent/components/LeftSide/LeftSide';
+import RightSide from '@/pages/TanksExperience/components/Modal/ModalContent/components/RightSide/RightSide';
 import tankStore from '@/pages/TanksExperience/store';
 
 import * as styles from './ModalContent.module.scss';
@@ -20,8 +22,9 @@ const ModalContent = () => {
       onPointerEnter={() => handleGetIn()}
       onPointerLeave={() => handleGetOut()}
     >
-      <p>Modal Content</p>
-      {tankStore.modal.activeTankId !== null && <p>Active tank: {tankStore.modal.activeTankId}</p>}
+      {/*{tankStore.modal.activeTankId !== null && <p>Active tank: {tankStore.modal.activeTankId}</p>}*/}
+      <LeftSide />
+      <RightSide />
     </div>
   );
 };
