@@ -9,6 +9,7 @@ interface Modal {
   height: number;
   width: number;
   actionInside: boolean;
+  isBelow: boolean;
   timeout: ReturnType<typeof setTimeout> | null;
 }
 
@@ -24,6 +25,8 @@ class tankStore {
     height: 0,
     width: 0,
     actionInside: false,
+    /* Is modal below the card */
+    isBelow: true,
     timeout: null,
   };
   constructor() {
@@ -67,6 +70,10 @@ class tankStore {
         clearTimeout(this.modal.timeout);
       }
     }
+  }
+
+  changeModalIsBelow(newStatus: boolean) {
+    this.modal.isBelow = newStatus;
   }
 
   resetModalPosition() {

@@ -21,6 +21,10 @@ const ModalContent = () => {
       className={styles.modalContent}
       onPointerEnter={() => handleGetIn()}
       onPointerLeave={() => handleGetOut()}
+      style={{
+        paddingTop: tankStore.modal.isBelow ? '76px' : '',
+        paddingBottom: tankStore.modal.isBelow ? '' : '76px',
+      }}
     >
       {/*{tankStore.modal.activeTankId !== null && <p>Active tank: {tankStore.modal.activeTankId}</p>}*/}
       <LeftSide />

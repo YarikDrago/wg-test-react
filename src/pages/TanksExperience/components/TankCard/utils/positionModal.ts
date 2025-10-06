@@ -13,7 +13,7 @@ export function positionModal(card: HTMLDivElement) {
 
   if (canPlaceBelow) {
     top = cardRect.bottom + window.scrollY;
-    // TODO isPlaceBelow = true;
+    tankStore.changeModalIsBelow(true);
   } else {
     const canPlaceAbove = cardRect.top - tankStore.modal.height - MARGIN > 0;
     if (canPlaceAbove) {
@@ -24,7 +24,7 @@ export function positionModal(card: HTMLDivElement) {
     * Place the modal on the top of the screen. */
       top = window.scrollY + MARGIN;
     }
-    // TODO isPlaceBelow = false;
+    tankStore.changeModalIsBelow(false);
   }
 
   /* Determine the left position of the modal */
