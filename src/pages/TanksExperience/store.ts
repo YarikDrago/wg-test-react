@@ -10,6 +10,7 @@ interface Modal {
   width: number;
   actionInside: boolean;
   isBelow: boolean;
+  arrowXPos: number;
   timeout: ReturnType<typeof setTimeout> | null;
 }
 
@@ -25,6 +26,8 @@ class tankStore {
     height: 0,
     width: 0,
     actionInside: false,
+    /* Position of the arrow on the modal (percentage of the modal width [0; 100])*/
+    arrowXPos: 50,
     /* Is modal below the card */
     isBelow: true,
     timeout: null,
@@ -74,6 +77,10 @@ class tankStore {
 
   changeModalIsBelow(newStatus: boolean) {
     this.modal.isBelow = newStatus;
+  }
+
+  setArrowXPos(newPos: number) {
+    this.modal.arrowXPos = newPos;
   }
 
   resetModalPosition() {

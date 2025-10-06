@@ -37,6 +37,11 @@ export function positionModal(card: HTMLDivElement) {
     left = cardRect.right - tankStore.modal.width;
   }
 
+  /* Determine the position of the arrow */
+  const cardXCenter = cardRect.left + cardRect.width / 2;
+  const cardXCenterPercent = ((cardXCenter - left) / tankStore.modal.width) * 100;
+
   tankStore.setModalLeft(left);
   tankStore.setModalTop(top);
+  tankStore.setArrowXPos(cardXCenterPercent);
 }
