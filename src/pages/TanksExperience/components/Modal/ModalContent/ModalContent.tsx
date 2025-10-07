@@ -25,20 +25,39 @@ const ModalContent = ({ isFullscreen = false }: ModalContentProps) => {
     tankStore.changeModalActionInside(false);
   }
 
+  const clickOut = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+
+    /* Checking if the click is inside the elements with the specified classes */
+    const isInsideModal = target.closest('.modalContent');
+    const isTankCard = target.closest('.tankCard');
+
+    if (isInsideModal || isTankCard) {
+      console.log('include');
+    } else {
+      console.log('not include');
+      tankStore.resetModalPositionTimeout();
+    }
+  };
+
   useEffect(() => {
     if (!contentRef.current || !simBorder.current) return;
     // TODO
     tankStore.modal.width = contentRef.current.clientWidth;
     tankStore.modal.height = contentRef.current.clientHeight;
+    window.addEventListener('click', clickOut);
 
     return () => {
       tankStore.modal.width = 0;
       tankStore.modal.height = 0;
+      window.removeEventListener('click', clickOut);
     };
   }, []);
 
   useEffect(() => {
-    // TODO isFullscreen
+    /* Do not calculate position and clip path
+    for fullscreen modal */
+    if (isFullscreen) return;
     if (!contentRef.current || !simBorder.current) return;
     positionModal();
     clipForm(
@@ -58,7 +77,7 @@ const ModalContent = ({ isFullscreen = false }: ModalContentProps) => {
   return (
     <div
       ref={contentRef}
-      className={styles.modalContent}
+      className={`${styles.modalContent} modalContent`}
       onPointerEnter={() => handleGetIn()}
       onPointerLeave={() => handleGetOut()}
       style={{

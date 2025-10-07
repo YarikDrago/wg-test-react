@@ -1,7 +1,6 @@
 import tankStore from '@/pages/TanksExperience/store';
 
 export function positionModal() {
-  // TODO if (isFullscreen) return
   /* Additional margin to the edge of the screen */
   const MARGIN = 8;
   const cardRect = tankStore.modal.cardRect;

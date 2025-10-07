@@ -26,18 +26,19 @@ const TankCard = ({ id, name, imgPath }: TankCardProps) => {
     tankStore.changeActiveTankId(id);
   }
 
-  function handleGetOut() {
+  function handleGetOut(e: React.PointerEvent<HTMLDivElement>) {
+    if (e.pointerType !== 'mouse') return;
     tankStore.changeActiveTankId(null);
     tankStore.resetModalPositionTimeout();
   }
 
   return (
     <div
-      className={styles.tankCard}
+      className={`${styles.tankCard} tankCard`}
       onPointerEnter={(e) => {
         handleGetIn(e);
       }}
-      onPointerLeave={() => handleGetOut()}
+      onPointerLeave={(e) => handleGetOut(e)}
     >
       <img src={imagePath} alt={`tank ${name}`} />
       <p>{name}</p>
