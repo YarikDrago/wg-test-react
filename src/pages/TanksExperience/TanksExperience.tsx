@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import Modal from '@/pages/TanksExperience/components/Modal/Modal';
 import ModalContent from '@/pages/TanksExperience/components/Modal/ModalContent/ModalContent';
 import TankCard from '@/pages/TanksExperience/components/TankCard/TankCard';
+import { pageDesc } from '@/pages/TanksExperience/pageDesc';
 import { downloadTanksData } from '@/pages/TanksExperience/utils/downloadTanksData';
 
 import tankStore from './store';
@@ -39,6 +40,7 @@ const TanksExperience = () => {
   return (
     <div className={styles.root}>
       <div className={styles.mainContent}>
+        <p className={styles.desc}>{pageDesc}</p>
         <div className={styles.cardsContainer}>
           {tankStore.tanks.map((tank, index) => {
             return <TankCard key={index} id={index} name={tank.name} imgPath={tank.img} />;
