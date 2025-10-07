@@ -19,3 +19,35 @@
   overflow-y: auto;
   scrollbar-gutter: stable both-edges;
 }
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  background: #454540;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  z-index: 10;
+  padding: 0;
+
+  &:hover {
+    background: #48484a;
+  }
+
+  &:active {
+    background: #5a5a5c;
+  }
+
+  img {
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+  }
+}

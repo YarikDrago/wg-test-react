@@ -50,6 +50,9 @@ const TanksExperience = () => {
         top={tankStore.modal.top ? tankStore.modal.top : 0}
         left={tankStore.modal.left ? tankStore.modal.left : 0}
         isFullscreen={isFullscreen}
+        handleClose={() => {
+          tankStore.resetModalPosition();
+        }}
       >
         <ModalContent isFullscreen={isFullscreen} />
       </Modal>
