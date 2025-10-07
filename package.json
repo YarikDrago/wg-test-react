@@ -4,6 +4,9 @@
   "description": "",
   "main": "src/index.tsx",
   "homepage": "/",
+  "engines": {
+    "node": "20.x"
+  },
   "jest": {
     "transformIgnorePatterns": [
       "node_modules/(?!axios)"
