@@ -16,7 +16,8 @@
   },
   "scripts": {
     "dev": "webpack serve --env NODE_ENV=development port=4001",
-    "build": "webpack --env NODE_ENV=production port=4003 analyzer",
+    "build": "webpack --env NODE_ENV=production",
+    "build:analyzer": "webpack --env NODE_ENV=production port=4003 analyzer",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --ext .js,.ts --fix",
     "prettier:precommit": "ts-node prettierPrecommit.ts",
