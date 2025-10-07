@@ -10,13 +10,15 @@ interface ModalProps {
   children?: React.ReactNode;
 }
 
+// TODO block scroll
+
 const Modal = forwardRef<HTMLDivElement, ModalProps>(
   ({ top = 0, left = 0, isActive, isFullscreen = false, children }, ref) => {
     return (
       <div
         ref={ref}
-        className={`${isFullscreen ? styles.fullscreen : styles.modal}`}
-        style={{ top: top, left: left, opacity: isActive ? 1 : 0.5 }}
+        className={`${styles.modal} ${isFullscreen ? styles.fullscreen : ''}`}
+        style={{ top: top, left: left, opacity: isActive ? 1 : 1 }}
       >
         {children}
       </div>

@@ -11,9 +11,21 @@ import * as styles from './TanksExperience.module.scss';
 
 const TanksExperience = () => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const [isFullscreen, setIsFullscreen] = React.useState(false);
 
   useEffect(() => {
+    const determineModalMode = () => {
+      // TODO reset modal
+      setIsFullscreen(window.innerWidth < 900);
+    };
+
     downloadTanksData();
+    determineModalMode();
+
+    window.addEventListener('resize', determineModalMode);
+    return () => {
+      window.removeEventListener('resize', determineModalMode);
+    };
   }, []);
 
   useEffect(() => {
@@ -37,9 +49,9 @@ const TanksExperience = () => {
         ref={modalRef}
         top={tankStore.modal.top ? tankStore.modal.top : 0}
         left={tankStore.modal.left ? tankStore.modal.left : 0}
-        isFullscreen={false}
+        isFullscreen={isFullscreen}
       >
-        <ModalContent />
+        <ModalContent isFullscreen={isFullscreen} />
       </Modal>
     </div>
   );

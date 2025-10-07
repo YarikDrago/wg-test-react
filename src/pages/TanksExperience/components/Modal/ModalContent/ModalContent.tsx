@@ -8,7 +8,11 @@ import tankStore from '@/pages/TanksExperience/store';
 
 import * as styles from './ModalContent.module.scss';
 
-const ModalContent = () => {
+interface ModalContentProps {
+  isFullscreen?: boolean;
+}
+
+const ModalContent = ({ isFullscreen = false }: ModalContentProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const simBorder = useRef<HTMLDivElement>(null);
 
@@ -22,14 +26,19 @@ const ModalContent = () => {
 
   useEffect(() => {
     // TODO isFullscreen
-    if (contentRef.current && simBorder.current)
-      clipForm(
-        tankStore.modal.isBelow,
-        tankStore.modal.arrowXPos,
-        simBorder.current,
-        contentRef.current
-      );
-  }, [tankStore.modal.isBelow, tankStore.modal.arrowXPos]);
+    if (!contentRef.current || !simBorder.current) return;
+    clipForm(
+      isFullscreen,
+      tankStore.modal.isBelow,
+      tankStore.modal.arrowXPos,
+      simBorder.current,
+      contentRef.current
+    );
+  }, [tankStore.modal.isBelow, tankStore.modal.arrowXPos, isFullscreen]);
+
+  useEffect(() => {
+    console.log(isFullscreen);
+  }, [isFullscreen]);
 
   return (
     <div
@@ -38,14 +47,18 @@ const ModalContent = () => {
       onPointerEnter={() => handleGetIn()}
       onPointerLeave={() => handleGetOut()}
       style={{
-        paddingTop: tankStore.modal.isBelow ? '76px' : '',
-        paddingBottom: tankStore.modal.isBelow ? '' : '76px',
+        paddingTop: tankStore.modal.isBelow ? (isFullscreen ? '' : '76px') : '',
+        paddingBottom: tankStore.modal.isBelow ? '' : isFullscreen ? '' : '76px',
       }}
     >
       {/*{tankStore.modal.activeTankId !== null && <p>Active tank: {tankStore.modal.activeTankId}</p>}*/}
       <LeftSide />
       <RightSide />
-      <div ref={simBorder} className={styles.borderSim} />
+      <div
+        ref={simBorder}
+        className={styles.borderSim}
+        style={{ display: isFullscreen ? 'none' : 'block' }}
+      />
     </div>
   );
 };

@@ -3,11 +3,19 @@ const ARROW_WIDTH = 68;
 const BORDER_WIDTH = 1;
 
 export function clipForm(
+  isFullscreen: boolean,
   isBelow: boolean,
   arrowPos: number,
   simBorder: HTMLDivElement,
   contentElem: HTMLDivElement
 ) {
+  console.log('CLIP', isFullscreen);
+  if (isFullscreen) {
+    console.log('set none');
+    contentElem.style.clipPath = 'none';
+    simBorder.style.clipPath = 'none';
+    return;
+  }
   if (!simBorder || !contentElem) return;
   if (isBelow) {
     contentElem.style.clipPath = `polygon(
