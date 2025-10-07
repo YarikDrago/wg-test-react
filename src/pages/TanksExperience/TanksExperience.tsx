@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 
+import wotImage from '@/assets/images/wot.jpg';
 import Modal from '@/pages/TanksExperience/components/Modal/Modal';
 import ModalContent from '@/pages/TanksExperience/components/Modal/ModalContent/ModalContent';
 import TankCard from '@/pages/TanksExperience/components/TankCard/TankCard';
@@ -39,6 +40,9 @@ const TanksExperience = () => {
 
   return (
     <div className={styles.root}>
+      <header>
+        <img src={wotImage} alt="tanks battle" />
+      </header>
       <div className={styles.mainContent}>
         <p className={styles.desc}>{pageDesc}</p>
         <div className={styles.cardsContainer}>
