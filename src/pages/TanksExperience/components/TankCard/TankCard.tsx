@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { positionModal } from '@/pages/TanksExperience/components/TankCard/utils/positionModal';
-
 import tankStore from '../../store';
 import * as styles from './TankCard.module.scss';
 
@@ -16,7 +14,14 @@ const TankCard = ({ id, name, imgPath }: TankCardProps) => {
 
   function handleGetIn(e: React.PointerEvent<HTMLDivElement>) {
     const target = e.target as HTMLDivElement;
-    positionModal(target);
+    const cardRect = target.getBoundingClientRect();
+    tankStore.modal.cardRect.top = cardRect.top;
+    tankStore.modal.cardRect.left = cardRect.left;
+    tankStore.modal.cardRect.width = cardRect.width;
+    tankStore.modal.cardRect.height = cardRect.height;
+    tankStore.modal.cardRect.bottom = cardRect.bottom;
+    tankStore.modal.cardRect.right = cardRect.right;
+    // TODO replace with function from store
     tankStore.activeTankId = id;
     tankStore.changeActiveTankId(id);
   }

@@ -2,10 +2,20 @@ import { makeAutoObservable } from 'mobx';
 
 import { TankData } from '@/pages/TanksExperience/tankData';
 
+interface CardRect {
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+  bottom: number;
+  right: number;
+}
+
 interface Modal {
   activeTankId: number | null;
   top: number | null;
   left: number | null;
+  cardRect: CardRect;
   height: number;
   width: number;
   actionInside: boolean;
@@ -23,6 +33,15 @@ class tankStore {
   modal: Modal = {
     /* Active ID of tank for modal content */
     activeTankId: null,
+    cardRect: {
+      top: 0,
+      left: 0,
+      width: 0,
+      height: 0,
+      bottom: 0,
+      right: 0,
+    },
+    // for modal positioning
     top: null,
     left: null,
     height: 0,
@@ -43,6 +62,9 @@ class tankStore {
   changeActiveTankId(newId: number | null) {
     this.activeTankId = newId;
     if (newId !== null) {
+      if (this.modal.timeout) {
+        clearTimeout(this.modal.timeout);
+      }
       if (newId !== this.modal.activeTankId) {
         this.modal.activeTankId = newId;
         this.resetModalContent();

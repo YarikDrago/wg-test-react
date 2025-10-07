@@ -9,9 +9,7 @@ export function clipForm(
   simBorder: HTMLDivElement,
   contentElem: HTMLDivElement
 ) {
-  console.log('CLIP', isFullscreen);
   if (isFullscreen) {
-    console.log('set none');
     contentElem.style.clipPath = 'none';
     simBorder.style.clipPath = 'none';
     return;

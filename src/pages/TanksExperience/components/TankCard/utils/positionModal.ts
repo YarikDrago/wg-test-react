@@ -1,10 +1,10 @@
 import tankStore from '@/pages/TanksExperience/store';
 
-export function positionModal(card: HTMLDivElement) {
+export function positionModal() {
   // TODO if (isFullscreen) return
   /* Additional margin to the edge of the screen */
   const MARGIN = 8;
-  const cardRect = card.getBoundingClientRect();
+  const cardRect = tankStore.modal.cardRect;
 
   /* Determine top position of modal */
   let top = 0;

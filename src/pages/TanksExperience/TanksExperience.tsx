@@ -45,17 +45,19 @@ const TanksExperience = () => {
           })}
         </div>
       </div>
-      <Modal
-        ref={modalRef}
-        top={tankStore.modal.top ? tankStore.modal.top : 0}
-        left={tankStore.modal.left ? tankStore.modal.left : 0}
-        isFullscreen={isFullscreen}
-        handleClose={() => {
-          tankStore.resetModalPosition();
-        }}
-      >
-        <ModalContent isFullscreen={isFullscreen} />
-      </Modal>
+      {tankStore.modal.activeTankId !== null && (
+        <Modal
+          ref={modalRef}
+          top={tankStore.modal.top ? tankStore.modal.top : 0}
+          left={tankStore.modal.left ? tankStore.modal.left : 0}
+          isFullscreen={isFullscreen}
+          handleClose={() => {
+            tankStore.resetModalPosition();
+          }}
+        >
+          <ModalContent isFullscreen={isFullscreen} />
+        </Modal>
+      )}
     </div>
   );
 };
