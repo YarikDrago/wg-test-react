@@ -23,7 +23,7 @@ const TankCard = ({ id, name, imgPath }: TankCardProps) => {
 
   function handleGetOut() {
     tankStore.changeActiveTankId(null);
-    tankStore.resetModalPositonTimeout();
+    tankStore.resetModalPositionTimeout();
   }
 
   return (

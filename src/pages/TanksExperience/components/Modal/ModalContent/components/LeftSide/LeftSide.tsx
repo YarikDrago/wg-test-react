@@ -1,4 +1,7 @@
 import React from 'react';
+import { observer } from 'mobx-react';
+
+import tankStore from '@/pages/TanksExperience/store';
 
 import * as styles from './LeftSide.module.scss';
 
@@ -17,7 +20,17 @@ const LeftSide = () => {
           {tankOptions.map((opt, index) => {
             return (
               <label key={index} className={styles.radioLabel}>
-                <input type="radio" key={index} name={'play-mode'} value={opt.value} />
+                <input
+                  type="radio"
+                  key={index}
+                  name={'play-mode'}
+                  value={opt.value}
+                  checked={tankStore.modal.coefMode === opt.value}
+                  onChange={(e) => {
+                    if (isNaN(+e.target.value)) return;
+                    tankStore.changeCoefMode(+e.target.value);
+                  }}
+                />
                 <span className={styles.custom} />
                 {opt.label}
               </label>
@@ -29,7 +42,17 @@ const LeftSide = () => {
         <h4>Количество боёв</h4>
         <div className={styles.sliderWrapper}>
           <div className={styles.sliderBackground}>
-            <input type="range" min={0} max={300} step={1} value={0} className={styles.slider} />
+            <input
+              type="range"
+              min={0}
+              max={300}
+              step={1}
+              value={tankStore.modal.daysValue}
+              onChange={(e) => {
+                tankStore.setDaysValue(e.target.value);
+              }}
+              className={styles.slider}
+            />
           </div>
         </div>
       </div>
@@ -37,4 +60,4 @@ const LeftSide = () => {
   );
 };
 
-export default LeftSide;
+export default observer(LeftSide);

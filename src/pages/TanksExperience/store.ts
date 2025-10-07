@@ -11,6 +11,8 @@ interface Modal {
   actionInside: boolean;
   isBelow: boolean;
   arrowXPos: number;
+  coefMode: number;
+  daysValue: number;
   timeout: ReturnType<typeof setTimeout> | null;
 }
 
@@ -30,6 +32,8 @@ class tankStore {
     arrowXPos: 50,
     /* Is modal below the card */
     isBelow: true,
+    coefMode: 1, // Default play mode- "Стандартная"
+    daysValue: 0,
     timeout: null,
   };
   constructor() {
@@ -39,8 +43,10 @@ class tankStore {
   changeActiveTankId(newId: number | null) {
     this.activeTankId = newId;
     if (newId !== null) {
-      // TODO if different tank is selected, reset modal content parameters
-      this.modal.activeTankId = newId;
+      if (newId !== this.modal.activeTankId) {
+        this.modal.activeTankId = newId;
+        this.resetModalContent();
+      }
     }
   }
 
@@ -52,7 +58,7 @@ class tankStore {
       }
     } else {
       if (this.activeTankId === null) {
-        this.resetModalPosition();
+        this.resetModalPositionTimeout();
       }
     }
   }
@@ -83,18 +89,42 @@ class tankStore {
     this.modal.arrowXPos = newPos;
   }
 
+  changeCoefMode(newMode: number) {
+    this.modal.coefMode = newMode;
+  }
+
+  setDaysValue(newDays: number | string) {
+    if (isNaN(+newDays)) {
+      this.modal.daysValue = 0;
+    } else {
+      if (+newDays < 0) {
+        newDays = 0;
+      }
+      if (+newDays > 300) {
+        newDays = 300;
+      }
+      this.modal.daysValue = +newDays;
+    }
+  }
+
   resetModalPosition() {
     this.modal.top = null;
     this.modal.left = null;
     this.modal.activeTankId = null;
     // additionally
     this.modal.actionInside = false;
+    this.resetModalContent();
   }
 
-  resetModalPositonTimeout() {
+  resetModalPositionTimeout() {
     this.modal.timeout = setTimeout(() => {
       this.resetModalPosition();
     }, 1000);
+  }
+
+  resetModalContent() {
+    this.modal.daysValue = 0;
+    this.modal.coefMode = 1;
   }
 }
 
