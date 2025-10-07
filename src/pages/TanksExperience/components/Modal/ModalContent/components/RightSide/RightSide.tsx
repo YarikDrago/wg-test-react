@@ -14,7 +14,7 @@ const RightSide = () => {
 
   useEffect(() => {
     let tankCoef = 0;
-    if (tankStore.modal.activeTankId) {
+    if (tankStore.modal.activeTankId !== null) {
       tankCoef = tankStore.tanks[tankStore.modal.activeTankId].coef;
     }
     const targetValue = Math.round(tankStore.modal.daysValue * tankCoef * tankStore.modal.coefMode);
