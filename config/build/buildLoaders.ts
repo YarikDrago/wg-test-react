@@ -87,5 +87,13 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     },
   };
 
-  return [svgLoader, babelLoader, styleLoader, fileLoader, pngLoader];
+  const videoLoader = {
+    test: /\.(mp4|webm|ogg)$/i,
+    type: 'asset/resource', // Save as separate file
+    // generator: {
+    //   filename: 'videos/[name][ext]',
+    // },
+  };
+
+  return [svgLoader, babelLoader, styleLoader, fileLoader, pngLoader, videoLoader];
 }
