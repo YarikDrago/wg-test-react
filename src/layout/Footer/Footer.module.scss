@@ -4,10 +4,34 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  justify-self: end;
   width: 100%;
-  padding: 10px 0;
-  margin: 0;
   background-color: #141414;
   color: rgb(159, 159, 159);
+  padding: 10px 0;
+  font-family: 'Roboto', sans-serif;
+}
 
+.line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    display: flex;
+    width: fit-content;
+    svg {
+      fill: rgb(159, 159, 159);
+    }
+
+    &:hover {
+      svg {
+        fill: #008cff;
+      }
+    }
+  }
 }
