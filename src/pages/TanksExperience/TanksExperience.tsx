@@ -40,7 +40,7 @@ const TanksExperience = () => {
 
   return (
     <div className={styles.root}>
-      <header>
+      <header className={styles.header}>
         <img src={wotImage} alt="tanks battle" />
       </header>
       <div className={styles.mainContent}>

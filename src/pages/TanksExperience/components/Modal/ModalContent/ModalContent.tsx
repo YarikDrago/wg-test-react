@@ -85,6 +85,11 @@ const ModalContent = ({ isFullscreen = false }: ModalContentProps) => {
         paddingBottom: tankStore.modal.isBelow ? '' : isFullscreen ? '' : '76px',
       }}
     >
+      {isFullscreen && tankStore.modal.activeTankId !== null && (
+        <header className={styles.header}>
+          <h1>{tankStore.tanks[tankStore.modal.activeTankId].name}</h1>
+        </header>
+      )}
       <LeftSide />
       <RightSide />
       <div
