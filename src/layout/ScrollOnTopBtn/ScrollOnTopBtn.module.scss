@@ -19,6 +19,11 @@
     transform: translateX(0);
   }
 
+  &:hover {
+    transform: translateY(-2px);
+    background-color: #555550;
+  }
+
   @media screen and (max-width: 900px) {
     right: 20px;
     bottom: 20px;
