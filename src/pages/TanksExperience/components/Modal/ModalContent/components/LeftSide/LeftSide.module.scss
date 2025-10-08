@@ -166,6 +166,8 @@
   margin: 4px;
   outline: none;
   padding: 0;
+  touch-action: pan-y; /* Allow only vertical panning */
+  -webkit-overflow-scrolling: touch;
 
   /* By default 0% */
   --val: 0%;
