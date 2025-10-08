@@ -7,12 +7,14 @@ import Header from '@/layout/Header/Header';
 import Main from '@/layout/Main/Main';
 import ScrollOnTopBtn from '@/layout/ScrollOnTopBtn/ScrollOnTopBtn';
 import AppRoutes from '@/routes/AppRoutes';
+import FireCanvas from '@/shared/FireCanvas/FireCanvas';
 
 import * as styles from './App.module.scss';
 
 const App = () => {
   return (
     <article className={styles.app}>
+      <FireCanvas />
       <Header />
       <Main>
         <AppRoutes />
