@@ -20,7 +20,7 @@ export const tanksData: TankData[] = [
   { name: 'Hetzer', img: 'Hetzer.png', coef: 2.7 },
 ];
 
-export const tankOptions = [
+export const playMode = [
   { value: 1, label: 'Стандартная' },
   { value: 1.1, label: 'Элитная' },
   { value: 1.2, label: 'Премиум' },

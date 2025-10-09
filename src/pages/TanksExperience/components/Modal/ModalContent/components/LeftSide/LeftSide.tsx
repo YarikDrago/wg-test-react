@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import tankStore from '@/pages/TanksExperience/store';
-import { tankOptions } from '@/pages/TanksExperience/tankData';
+import { playMode } from '@/pages/TanksExperience/tankData';
 import Slider from '@/shared/components/Slider/Slider';
 
 import * as styles from './LeftSide.module.scss';
@@ -13,7 +13,7 @@ const LeftSide = () => {
       <div className={styles.playModeBlock}>
         <h4>Комплектация</h4>
         <div className={styles.playModeSelector}>
-          {tankOptions.map((opt, index) => {
+          {playMode.map((opt, index) => {
             return (
               <label key={index} className={styles.radioLabel}>
                 <input
