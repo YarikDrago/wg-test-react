@@ -2,6 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import tankStore from '@/pages/TanksExperience/store';
+import Slider from '@/shared/components/Slider/Slider';
 
 import * as styles from './LeftSide.module.scss';
 
@@ -12,13 +13,6 @@ export const tankOptions = [
 ];
 
 const LeftSide = () => {
-  const getSliderPercentage = () => {
-    const min = 0;
-    const max = 300;
-    const value = tankStore.modal.daysValue;
-    return ((value - min) / (max - min)) * 100;
-  };
-
   return (
     <div className={styles.leftSide}>
       <div className={styles.playModeBlock}>
@@ -49,17 +43,14 @@ const LeftSide = () => {
         <h4>Количество боёв</h4>
         <div className={styles.sliderWrapper}>
           <div className={styles.sliderBackground}>
-            <input
-              type="range"
+            <Slider
               min={0}
               max={300}
               step={1}
               value={tankStore.modal.daysValue}
-              onChange={(e) => {
-                tankStore.setDaysValue(e.target.value);
+              onChange={(value) => {
+                tankStore.setDaysValue(value);
               }}
-              className={styles.slider}
-              style={{ '--val': `${getSliderPercentage()}%` } as React.CSSProperties}
             />
           </div>
         </div>
