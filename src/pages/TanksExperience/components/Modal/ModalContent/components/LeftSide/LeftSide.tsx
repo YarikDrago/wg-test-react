@@ -2,15 +2,10 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 import tankStore from '@/pages/TanksExperience/store';
+import { tankOptions } from '@/pages/TanksExperience/tankData';
 import Slider from '@/shared/components/Slider/Slider';
 
 import * as styles from './LeftSide.module.scss';
-
-export const tankOptions = [
-  { value: 1, label: 'Стандартная' },
-  { value: 1.1, label: 'Элитная' },
-  { value: 1.2, label: 'Премиум' },
-];
 
 const LeftSide = () => {
   return (
