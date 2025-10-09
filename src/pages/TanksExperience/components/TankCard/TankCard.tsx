@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { usePointerType } from '@/shared/hooks/usePointerType';
+
 import tankStore from '../../store';
 import * as styles from './TankCard.module.scss';
 
@@ -11,9 +13,17 @@ interface TankCardProps {
 
 const TankCard = ({ id, name, imgPath }: TankCardProps) => {
   const imagePath = require(`@/assets/images/tanks/${imgPath}`);
+  const { hasPointer } = usePointerType();
 
-  function handleGetIn(e: React.PointerEvent<HTMLDivElement>) {
-    const target = e.target as HTMLDivElement;
+  function handleGetOut() {
+    tankStore.changeActiveTankId(null);
+    tankStore.resetModalPositionTimeout();
+  }
+
+  function saveAsActiveCard(
+    e: React.PointerEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>
+  ) {
+    const target = e.currentTarget as HTMLDivElement;
     const cardRect = target.getBoundingClientRect();
     tankStore.modal.cardRect.top = cardRect.top;
     tankStore.modal.cardRect.left = cardRect.left;
@@ -21,24 +31,20 @@ const TankCard = ({ id, name, imgPath }: TankCardProps) => {
     tankStore.modal.cardRect.height = cardRect.height;
     tankStore.modal.cardRect.bottom = cardRect.bottom;
     tankStore.modal.cardRect.right = cardRect.right;
-    // TODO replace with function from store
     tankStore.activeTankId = id;
     tankStore.changeActiveTankId(id);
-  }
-
-  function handleGetOut(e: React.PointerEvent<HTMLDivElement>) {
-    if (e.pointerType !== 'mouse') return;
-    tankStore.changeActiveTankId(null);
-    tankStore.resetModalPositionTimeout();
   }
 
   return (
     <div
       className={`${styles.tankCard} tankCard`}
-      onPointerEnter={(e) => {
-        handleGetIn(e);
-      }}
-      onPointerLeave={(e) => handleGetOut(e)}
+      {...(hasPointer && {
+        onPointerEnter: (e) => saveAsActiveCard(e),
+        onPointerLeave: () => handleGetOut(),
+      })}
+      {...(!hasPointer && {
+        onClick: (e) => saveAsActiveCard(e),
+      })}
     >
       <img src={imagePath} alt={`tank ${name}`} />
       <p>{name}</p>
