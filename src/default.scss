@@ -58,6 +58,15 @@ h6 {
   font-size: 14px;
 }
 
+button,
+a,
+[role='button'],
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent; /* Disable tap highlight */
+  outline: none; /* Disable outline */
+}
+
 input {
   position: relative;
   display: block;
@@ -78,6 +87,14 @@ button {
   line-height: 20px;
   font-weight: 500;
   border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .resize-animation-stopper * {
