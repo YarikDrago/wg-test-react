@@ -7,7 +7,7 @@ import Header from '@/layout/Header/Header';
 import Main from '@/layout/Main/Main';
 import ScrollOnTopBtn from '@/layout/ScrollOnTopBtn/ScrollOnTopBtn';
 import AppRoutes from '@/routes/AppRoutes';
-import FireCanvas from '@/shared/FireCanvas/FireCanvas';
+import FireCanvas from '@/shared/components/FireCanvas/FireCanvas';
 
 import * as styles from './App.module.scss';
 
