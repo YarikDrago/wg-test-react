@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 
 import tankStore from '@/pages/TanksExperience/store';
 import { playMode } from '@/pages/TanksExperience/tankData';
+import RadioGroup from '@/shared/components/RadioGroup/RadioGroup';
 import Slider from '@/shared/components/Slider/Slider';
 
 import * as styles from './LeftSide.module.scss';
@@ -13,25 +14,15 @@ const LeftSide = () => {
       <div className={styles.playModeBlock}>
         <h4>Комплектация</h4>
         <div className={styles.playModeSelector}>
-          {playMode.map((opt, index) => {
-            return (
-              <label key={index} className={styles.radioLabel}>
-                <input
-                  type="radio"
-                  key={index}
-                  name={'play-mode'}
-                  value={opt.value}
-                  checked={tankStore.modal.coefMode === opt.value}
-                  onChange={(e) => {
-                    if (isNaN(+e.target.value)) return;
-                    tankStore.changeCoefMode(+e.target.value);
-                  }}
-                />
-                <span className={styles.custom} />
-                {opt.label}
-              </label>
-            );
-          })}
+          <RadioGroup
+            optionsData={playMode}
+            name={'play-mode'}
+            onChange={(newValue) => {
+              if (isNaN(+newValue)) return;
+              tankStore.changeCoefMode(+newValue);
+            }}
+            active={tankStore.modal.coefMode.toString()}
+          />
         </div>
       </div>
       <div className={styles.sliderBlock}>
