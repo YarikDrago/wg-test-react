@@ -27,6 +27,7 @@
       Helvetica,
       sans-serif;
     font-weight: 500;
+    font-size: 12px;
 
     li {
       height: 50px;
@@ -53,6 +54,10 @@
           color: #ea0000;
         }
       }
+    }
+
+    @media screen and (max-width: 640px) {
+      padding-left: 36px;
     }
   }
 }
