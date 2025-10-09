@@ -12,6 +12,13 @@ export const tankOptions = [
 ];
 
 const LeftSide = () => {
+  const getSliderPercentage = () => {
+    const min = 0;
+    const max = 300;
+    const value = tankStore.modal.daysValue;
+    return ((value - min) / (max - min)) * 100;
+  };
+
   return (
     <div className={styles.leftSide}>
       <div className={styles.playModeBlock}>
@@ -52,6 +59,7 @@ const LeftSide = () => {
                 tankStore.setDaysValue(e.target.value);
               }}
               className={styles.slider}
+              style={{ '--val': `${getSliderPercentage()}%` } as React.CSSProperties}
             />
           </div>
         </div>
