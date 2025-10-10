@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 
 import wotImage from '@/assets/images/wot.jpg';
-import ModalContent from '@/pages/TanksExperience/components/Modal/ModalContent/ModalContent';
+import ModalContent from '@/pages/TanksExperience/components/ModalContent/ModalContent';
 import TankCard from '@/pages/TanksExperience/components/TankCard/TankCard';
 import { pageDesc } from '@/pages/TanksExperience/pageDesc';
 import { downloadTanksData } from '@/pages/TanksExperience/utils/downloadTanksData';

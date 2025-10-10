@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 
-import LeftSide from '@/pages/TanksExperience/components/Modal/ModalContent/components/LeftSide/LeftSide';
-import RightSide from '@/pages/TanksExperience/components/Modal/ModalContent/components/RightSide/RightSide';
-import { clipForm } from '@/pages/TanksExperience/components/Modal/ModalContent/utils/clipForm';
+import LeftSide from '@/pages/TanksExperience/components/ModalContent/components/LeftSide/LeftSide';
+import RightSide from '@/pages/TanksExperience/components/ModalContent/components/RightSide/RightSide';
+import { clipForm } from '@/pages/TanksExperience/components/ModalContent/utils/clipForm';
 import { positionModal } from '@/pages/TanksExperience/components/TankCard/utils/positionModal';
 import tankStore from '@/pages/TanksExperience/store';
 
