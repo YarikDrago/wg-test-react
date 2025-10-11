@@ -13,6 +13,8 @@ interface ModalContentProps {
   isFullscreen?: boolean;
 }
 
+const ARROW_PADDING = `76px`;
+
 const ModalContent = ({ isFullscreen = false }: ModalContentProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const simBorder = useRef<HTMLDivElement>(null);
@@ -75,8 +77,8 @@ const ModalContent = ({ isFullscreen = false }: ModalContentProps) => {
       onPointerEnter={() => handleGetIn()}
       onPointerLeave={() => handleGetOut()}
       style={{
-        paddingTop: tankStore.modal.isBelow ? (isFullscreen ? '' : '76px') : '',
-        paddingBottom: tankStore.modal.isBelow ? '' : isFullscreen ? '' : '76px',
+        paddingTop: tankStore.modal.isBelow ? (isFullscreen ? '' : ARROW_PADDING) : '',
+        paddingBottom: tankStore.modal.isBelow ? '' : isFullscreen ? '' : ARROW_PADDING,
       }}
     >
       {isFullscreen && tankStore.modal.activeTankId !== null && (
