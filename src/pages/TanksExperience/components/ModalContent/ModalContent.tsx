@@ -32,17 +32,11 @@ const ModalContent = ({ isFullscreen = false }: ModalContentProps) => {
     const isInsideModal = target.closest('.modalContent');
     const isTankCard = target.closest('.tankCard');
 
-    if (isInsideModal || isTankCard) {
-      console.log('include');
-    } else {
-      console.log('not include');
-      tankStore.resetModalPositionTimeout();
-    }
+    if (!isInsideModal && !isTankCard) tankStore.resetModalPositionTimeout();
   };
 
   useEffect(() => {
     if (!contentRef.current || !simBorder.current) return;
-    // TODO
     tankStore.modal.width = contentRef.current.clientWidth;
     tankStore.modal.height = contentRef.current.clientHeight;
     window.addEventListener('click', clickOut);
