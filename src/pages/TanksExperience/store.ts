@@ -129,6 +129,10 @@ class tankStore {
     }
   }
 
+  setModalCardRect(rect: CardRect) {
+    this.modal.cardRect = rect;
+  }
+
   resetModalPosition() {
     this.modal.top = null;
     this.modal.left = null;

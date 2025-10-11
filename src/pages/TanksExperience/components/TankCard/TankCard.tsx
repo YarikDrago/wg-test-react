@@ -25,13 +25,15 @@ const TankCard = ({ id, name, imgPath }: TankCardProps) => {
   ) {
     const target = e.currentTarget as HTMLDivElement;
     const cardRect = target.getBoundingClientRect();
-    tankStore.modal.cardRect.top = cardRect.top;
-    tankStore.modal.cardRect.left = cardRect.left;
-    tankStore.modal.cardRect.width = cardRect.width;
-    tankStore.modal.cardRect.height = cardRect.height;
-    tankStore.modal.cardRect.bottom = cardRect.bottom;
-    tankStore.modal.cardRect.right = cardRect.right;
-    tankStore.activeTankId = id;
+    const storeCardRect = {
+      top: cardRect.top,
+      left: cardRect.left,
+      width: cardRect.width,
+      height: cardRect.height,
+      bottom: cardRect.bottom,
+      right: cardRect.right,
+    };
+    tankStore.modal.cardRect = storeCardRect;
     tankStore.changeActiveTankId(id);
   }
 
